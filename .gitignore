@@ -15,4 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
-/.byebug_history
+.byebug_history
+.*
+!/.gitignore
