@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+<h3> ScoreBoard</h3>
+<hr>
+<% @game.frames.each_with_index do |frame, index|%>
+<div>
+Frame <%=index+1%> |
+First roll: <strong><%= frame.first_roll%> |</strong>
+Second roll: <strong><%= frame.second_roll%> |</strong>
+Score : <strong><%= frame.points?%></strong>
+<div>
+<% end %>
+<hr>
+<br/> <br/> <br/>
+
+<% if @game.finished?%>
+Contratulations, you completed the game.
+<br/>
+Your total score is <strong><%=@game.total_score?%></strong>
+<br/>
+ <%= link_to 'Start a New Game', new_game_path %>
+<%else%>
+  <%= render 'score' %>
+<%end%>
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>
