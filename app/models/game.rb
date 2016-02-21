@@ -43,7 +43,7 @@ class Game < ActiveRecord::Base
             frame.update_and_mark!(score: points)
           end
         else
-          byebug
+          # byebug
           if frames[index.succ]
             next_frame = frames[index.succ]
             points = 10 + next_frame.total_score?
