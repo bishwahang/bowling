@@ -10,12 +10,10 @@ class Game < ActiveRecord::Base
     true
   end
 
-  def total_score?
+  def final_score?
     frames.map(&:score).inject(:+)
   end
 
   def update_score
-    frames.each_with_index do |frame, index|
-    end
   end
 end

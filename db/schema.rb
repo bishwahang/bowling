@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221161646) do
+ActiveRecord::Schema.define(version: 20160221184550) do
 
   create_table "frames", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20160221161646) do
     t.integer  "second_roll"
     t.integer  "game_id"
     t.integer  "score"
+    t.boolean  "mark"
   end
 
 # Could not dump table "games" because of following NoMethodError
