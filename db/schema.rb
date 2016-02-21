@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221184550) do
+ActiveRecord::Schema.define(version: 20160221215912) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "frames", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -21,9 +24,13 @@ ActiveRecord::Schema.define(version: 20160221184550) do
     t.integer  "game_id"
     t.integer  "score"
     t.boolean  "mark"
+    t.boolean  "extra_frame"
   end
 
-# Could not dump table "games" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "games", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "name"
+  end
 
 end

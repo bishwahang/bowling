@@ -12,8 +12,10 @@
   <% end %>
   <%= f.label :first_roll%>
   <%= f.text_field :first_roll %>
-  <%= f.label :second_roll %>
-  <%= f.text_field :second_roll %>
+  <% unless @hide_second_roll %>
+    <%= f.label :second_roll %>
+    <%= f.text_field :second_roll %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

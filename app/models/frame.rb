@@ -8,8 +8,14 @@ class Frame < ActiveRecord::Base
   before_create :process
 
   def check_total_score
-    if total_score? > 10 || total_score? < 0
-      errors.add(:base, "Total sum cannot be more than 10 or less than 0")
+    if extra_frame
+      if (total_score? > 20 || total_score? < 0)
+        errors.add(:base, "Total sum cannot be more than 20 or less than 0")
+      end
+    else
+      if total_score? > 10 || total_score? < 0
+        errors.add(:base, "Total sum cannot be more than 10 or less than 0")
+      end
     end
   end
 
@@ -23,7 +29,7 @@ class Frame < ActiveRecord::Base
     if is_strike?
       self.second_roll = nil
     end
-    if !is_strike? && !is_spare?
+    if (!is_strike? && !is_spare?) || extra_frame
       self.score = total_score?
       self.mark = true
     end

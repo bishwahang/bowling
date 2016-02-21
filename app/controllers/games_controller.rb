@@ -11,6 +11,9 @@ class GamesController < ApplicationController
   # GET /games/1.json
   def show
     @frame = Frame.new
+    if @game.extra_frame? && @game.frames.last.is_spare?
+      @hide_second_roll = true
+    end
   end
 
   # GET /games/new
@@ -39,7 +42,11 @@ class GamesController < ApplicationController
   end
 
   def add_frame
-    @frame = Frame.new(frame_params.merge({:game_id => params[:id]}))
+    new_frame_params = frame_params.merge({:game_id => params[:id]})
+    if @game.extra_frame?
+      new_frame_params.merge!({:extra_frame => true})
+    end
+    @frame = Frame.new(new_frame_params)
     if @frame.save
         redirect_to @game, notice: 'Frame was successfully created.'
     else

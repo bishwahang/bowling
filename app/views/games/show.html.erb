@@ -12,7 +12,7 @@
 <hr>
 <table>
 <tr>
-<% @game.frames.each_with_index do |frame, index|%>
+<% @game.frames.take(10).each_with_index do |frame, index|%>
 <div>
 <td>
 Frame <%=index.succ%> |
