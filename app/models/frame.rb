@@ -8,15 +8,15 @@ class Frame < ActiveRecord::Base
   validate :total_points?
   def total_points?
     sum = 0
-    sum += self.first_roll if self.first_roll
-    sum += self.second_roll if self.second_roll
+    sum += first_roll if first_roll
+    sum += second_roll if second_roll
     if sum > 10
       errors.add(:base, "Total sum cannot be more thatn 10")
     end
   end
 
   def is_strike?
-    self.first_roll == 10
+    first_roll == 10
   end
 
   def is_spare?
@@ -24,6 +24,6 @@ class Frame < ActiveRecord::Base
   end
 
   def points?
-    self.first_roll + self.second_roll
+    first_roll + second_roll
   end
 end

@@ -11,15 +11,9 @@ Score : <strong><%= frame.points?%></strong>
 <% end %>
 <hr>
 <br/> <br/> <br/>
-
+<%= render 'score' %>
 <% if @game.finished?%>
-Contratulations, you completed the game.
-<br/>
-Your total score is <strong><%=@game.total_score?%></strong>
-<br/>
- <%= link_to 'Start a New Game', new_game_path %>
 <%else%>
-  <%= render 'score' %>
 <%end%>
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
