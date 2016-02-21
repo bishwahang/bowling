@@ -20,12 +20,12 @@ Frame <%=index.succ%> |
 <% if frame.is_strike? %>
   <td><strong><%= 'X' %> </strong></td>
 <% else %>
-  <td><strong><%= frame.first_roll %> </strong></td>
+  <td><strong><%= frame.first_roll ? frame.first_roll : '0' %> </strong></td>
 <% end %>
 <% if frame.is_spare? %>
 <td> <strong><%= '/'%> </strong> </td>
 <% else %>
-  <td><strong><%= frame.second_roll %> </strong></td>
+  <td><strong><%= frame.second_roll ? frame.second_roll : '0'%> </strong></td>
 <% end %>
 </tr>
 </table>
