@@ -1,5 +1,6 @@
 Contratulations, you completed the game.
 <br/>
-Your total score is <strong><%=@game.total_score?%></strong>
+Your total score is <strong><%=@game.final_score?%></strong>
 <br/>
+<%= render 'score_board' %>
 <%= link_to 'Start a New Game', new_game_path %>

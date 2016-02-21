@@ -1,6 +1,5 @@
 class Game < ActiveRecord::Base
-  has_many :frames
-  validates :name, presence: true
+  has_many :frames, -> { order "created_at ASC" }
   def finished?
     return false if self.frames.count < 10
     return false if extra_frame?
@@ -21,7 +20,7 @@ class Game < ActiveRecord::Base
   end
 
   def update_score
-    frames.each_with_index do |frame, index|
+    frames.take(10).each_with_index do |frame, index|
       unless frame.mark || frame.extra_frame
         if index < 9
           # if frame is strike check for two consequetive ball
@@ -44,6 +43,7 @@ class Game < ActiveRecord::Base
             frame.update_and_mark!(score: points)
           end
         else
+          byebug
           if frames[index.succ]
             next_frame = frames[index.succ]
             points = 10 + next_frame.total_score?

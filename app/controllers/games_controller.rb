@@ -10,6 +10,10 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @game.update_score
+    if @game.finished?
+      render 'finished'
+    end
     @frame = Frame.new
     if @game.extra_frame? && @game.frames.last.is_spare?
       @hide_second_roll = true
@@ -48,7 +52,7 @@ class GamesController < ApplicationController
     end
     @frame = Frame.new(new_frame_params)
     if @frame.save
-        redirect_to @game, notice: 'Frame was successfully created.'
+      redirect_to @game, notice: 'Frame was successfully created.'
     else
       render 'show'
     end

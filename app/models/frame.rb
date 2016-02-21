@@ -36,10 +36,12 @@ class Frame < ActiveRecord::Base
   end
 
   def is_strike?
-    first_roll == 10
+    return false if extra_frame
+    first_roll == 10 && (second_roll.nil? || second_roll == 0)
   end
 
   def is_spare?
+    return false if extra_frame
     !is_strike? && total_score? == 10
   end
 
