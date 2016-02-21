@@ -11,9 +11,6 @@ class GamesController < ApplicationController
   # GET /games/1.json
   def show
     @frame = Frame.new
-    if @game.finished?
-      render 'finished'
-    end
   end
 
   # GET /games/new

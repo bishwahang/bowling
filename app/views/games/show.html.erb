@@ -20,12 +20,12 @@ Frame <%=index.succ%> |
   <tr>
 <% if frame.is_strike? %>
   <td><strong><%= 'X' %> </strong></td>
-  <td> <strong><%= ' '%> </strong></td>
-<% elsif frame.is_spare? %>
-  <td> <strong><%= frame.first_roll %> </strong> </td>
-<td> <strong><%= '/'%> </strong> </td>
 <% else %>
   <td><strong><%= frame.first_roll %> </strong></td>
+<% end %>
+<% if frame.is_spare? %>
+<td> <strong><%= '/'%> </strong> </td>
+<% else %>
   <td><strong><%= frame.second_roll %> </strong></td>
 <% end %>
 </tr>
@@ -38,9 +38,10 @@ Score: <strong><%= frame.score %></strong>
 </table>
 <hr>
 <br/> <br/> <br/>
-<%= render 'score' %>
 <% if @game.finished?%>
+  Congratulations! You completed the game with final score <%= @game.final_score? %>
 <%else%>
+  <%= render 'score' %>
 <%end%>
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

@@ -3,7 +3,7 @@ class Frame < ActiveRecord::Base
   # attr_accessor :roll1, :roll2, :points, :strike, :spare
   # validates :first_roll, :second_roll, presence: true
   validates :first_roll, numericality: { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 10 }
-  validates :second_roll, numericality: {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 10 }
+  validates :second_roll, numericality: {:allow_blank => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 10 }
   validate :check_total_score
   before_create :process
 
