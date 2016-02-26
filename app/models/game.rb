@@ -27,15 +27,18 @@ class Game < ActiveRecord::Base
     frames.take(10).each_with_index do |frame, index|
       # do not consider any frame that is already marked done
       # or the extra frame (11th frame)
+      # byebug
       unless frame.mark || frame.extra_frame
         # for all frame besides the 10th frame
         if index < 9
           # if frame is strike check for two consequetive ball
+          # byebug
           if frame.is_strike? && frames[index.succ]
             next_frame = frames[index.succ]
             if next_frame.is_strike?
-              if frames[index.succ]
-                next_frame = frames[index.succ]
+              new_index = index.succ
+              if frames[new_index.succ]
+                next_frame = frames[new_index.succ]
                 points = 20 + next_frame.first_roll
                 frame.update_and_mark!(score: points)
               end
